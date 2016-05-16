@@ -1,2 +1,0 @@
-# luojike
-this is test
