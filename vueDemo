@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>vueDemo</title>
+</head>
+  <body style="margin:0px;">
+<div id="test" s="{{message}}">
+<span v-if="index % 2 == 0">{{message}}</span>
+<span v-else>{{message1}}</span>
+<p v-show="index">这可能也是一个组件</p>
+<ul>
+<template v-for="item of items">
+	<li  v-if="$index % 2 == 0" style="background-color:red;" v-on:click.stop="doThis(this)">{{item}}</li>
+	<li  v-else style="background-color:blue;">{{item}}</li>
+</template>
+
+</ul>
+</div>
+<script src="vue.js"></script>
+<script>
+var demo = new Vue({
+  el: '#test',
+  data: {
+	index:3,
+    message: '就是一个蔬菜',
+	message1: '就是二个漏斗',
+	items:[1,2,3,4,5]
+  },
+  methods:{
+	doThis:function(node){
+		console.log(node.$event.target.innerHTML);
+	}
+  }
+})
+</script>  
+  </body>
+  </html>
