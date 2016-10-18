@@ -1,0 +1,52 @@
+option = {
+    title : {
+        text: '广州恒大球路走势',
+        subtext: '纯属虚构'
+    },
+    tooltip : {
+        trigger: 'axis',
+      formatter:function(a,b,c){
+        var rs = "胜";
+        var zk = "主";
+        if(a[0].series.xdata[a[0].dataIndex] == 1){zk="客"}
+        console.log(a);
+        if(a[0].data==0)rs = "负";else if(a[0].data==1)rs="平";
+      	return a[0].seriesName+":"+zk+rs;
+      }
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['1','2','3','4','+','5']
+        }
+    ],
+    yAxis : [
+        {
+          type : 'category',max:2,min:0,
+          boundaryGap : false,
+           axisLabel : {
+                formatter: function(a){
+                	if(a == 0){
+                    	return "负";
+                    }else if(a == 1){
+                    	return "平";
+                    }else{
+                    	return "胜";
+                    }
+                }
+            },
+          data : [0,1,2]
+           
+        }
+    ],
+    series : [
+        {
+            name:'广州恒大',
+            type:'line',
+            xdata:[0,1,1,0,1,1,0],
+            data:[1, 1, 0, 2, 2, 1, 0]
+        }
+    ]
+};
+                    
