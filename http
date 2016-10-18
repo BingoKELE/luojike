@@ -1,0 +1,40 @@
+1.请求行  
+
+请求行由请求方法字段、URL字段和HTTP协议版本字段3个字段组成，它们用空格分隔。比如 GET /data/info.html HTTP/1.1
+
+方法字段就是HTTP使用的请求方法，比如常见的GET/POST
+
+其中HTTP协议版本有两种：HTTP1.0/HTTP1.1 可以这样区别：
+
+HTTP1.0对于每个连接都的建立一次连接一次只能传送一个请求和响应，请求就会关闭，HTTP1.0没有Host字段；
+而HTTP1.1在同一个连接中可以传送多个请求和响应，多个请求可以重叠和同时进行，HTTP1.1必须有Host字段。
+
+ 
+
+2.请求头部
+
+请求头部是 字段名：值 的格式展现
+
+用于HTTP请求中的常用请求头字段
+Accept：　　　　   用于高速服务器，客户机支持的数据类型
+Accept-Charset：  用于告诉服务器，客户机采用的编码格式
+Accept-Encoding：用于告诉服务器，客户机支持的数据压缩格式
+Accept-Language：客户机的语言环境
+Host：　　　　　　客户机通过这个头高速服务器，想访问的主机名
+If-Modified-Since：客户机通过这个头告诉服务器，资源的缓存时间
+Referer：　　　  　客户机通过这个头告诉服务器，它是从哪个资源来访问服务器的（防盗链）
+User-Agent：　　  客户机通过这个头告诉服务器，客户机的软件环境
+Cookie：　　　　   客户机通过这个头可以向服务器带数据
+Connection：　　  处理完这次请求后是否断开连接还是继续保持连接
+Date：　　　　　   当前时间值
+
+
+request
+If-Modified-since 向服务器确认浏览器缓存中的内容是否过时。如果不过时，返回的就是如上图所示的 304 Not Modified。过时，返回 200 OK。
+
+
+respone
+
+content-encoding : gzip(为了节约浏览和时间，可以压缩后传输 img js css均可)
+Expires：即在 HTTP 头中指明具体失效的时间
+Max-age：在 HTTP 头中按秒指定失效的时间HTTP/1.1 支持
