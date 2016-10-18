@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/modules/exporting.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/themes/dark-unica.js"></script>
+</head>
+<body>
+<div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto" data-highcharts-chart="0">
+</div>
+<script>$(function () {
+Highcharts.theme = {
+        colors: ["#ccc"],//内圈多边形边框颜色
+        chart: {
+        	height: 250,
+        	width:300,
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                stops: [
+                    [0, 'rgb(18,18,18)'],
+                    [1, 'rgb(18,18,18)']
+                ]
+            },
+            style: {
+            },
+            plotBorderColor: 'rgb(80,80,80)'
+        },
+         xAxis: {
+          gridLineColor: 'rgb(150,150,150)',
+          categories: ['KDA', '发育', '推进', '生存', '输出', '综合'],
+          labels: {
+             style: {
+                color: '#999'
+             }
+          },
+          lineColor: '#707073',
+          minorGridLineColor: '#505053',
+          tickColor: '#707073',
+          title: {
+             style: {
+                color: '#A0A0A3'
+
+             }
+          }
+       },
+       yAxis: {
+          gridLineColor: 'rgb(80,80,80)',
+          labels: {
+             formatter: function() {
+                return "";
+            }
+          },
+          lineColor: '#707073',
+          minorGridLineColor: 'rgb(40,40,40)',
+          tickColor: '#707073',
+          tickWidth: 1,
+          title: {
+             style: {
+                color: '#A0A0A3'
+             }
+          }
+       },
+        tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            style: {
+                color: '#F0F0F0'
+            }
+        },
+
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    color: '#B0B0B3'
+                },
+                marker: {
+                    radius:0,
+                    lineColor:'#ccc',
+                    states: {
+                        hover: {
+                            fillColor: '#fff',
+                            radius: 4
+                        }
+                    }
+                },
+            },
+            boxplot: {
+                fillColor: '#505053'
+            },
+            candlestick: {
+            },
+            errorbar: {
+            }
+        },
+        legend: {
+            enabled: false,//去掉折线 示例
+        },
+    };
+
+    //Highcharts.setOptions(Highcharts.theme);//设置基础参数
+    var chart = $('#container').highcharts({
+		colors: ["#ccc"],//内圈多边形边框颜色
+        chart: {
+            polar: true,
+            type: 'area'//表示填充内圈 为line时 表示不填充
+        },
+		legend: {
+            enabled: false,//去掉折线 示例
+        },
+        title: {
+            text: ''//去掉标题
+        },
+        pane: {
+            size: '85%'//图占容器大小
+        },
+        subtitle: {
+            text: ''//去掉副标题
+        },
+        xAxis: {
+            categories: ['KDA', '发育', '推进', '生存', '输出', '综合'],//定义外框值
+            tickmarkPlacement: 'off',
+            lineWidth: 0
+        },
+        
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            max: 100,//规定Y最大值
+			labels: {
+             formatter: function() {
+                return "";
+            }
+          },
+            minorTickInterval: 50
+        },
+        
+        tooltip: {
+            borderWidth:0,
+            backgroundColor: '#333',//提示背景颜色
+            formatter: function() {
+                var point = this.point,
+                    s = this.x +'能力值: <b style="color:#ccc;font-size:12px;">'+ this.y +'<br/>';
+                return s;
+            }
+        },
+        series: [{
+            name: 'Allocated Budget',
+            data: [73.7, 94.9, 98.9, 67.9, 92.7, 86.3],
+            fillColor: 'rgba(70,70,70,0.7)',//内圈多边形填充颜色
+            fillOpacity: 0.8,
+			pointPlacement: 'off'
+        }],
+        exporting: {
+            enabled: false//不显示打印
+        },
+        credits: {
+            enabled: false//不显示 底部水印
+        }
+    })
+});
+</script></body></html>
